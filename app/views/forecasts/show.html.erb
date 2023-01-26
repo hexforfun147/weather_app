@@ -1,0 +1,19 @@
+<h1>Forecast</h1>
+
+<%= form_with(method: 'get') do %>
+  <%= label :address, "Please provide your address?" %><br>
+  <%= text_field_tag(:address, @address, size: 90) %><br>
+  <%= submit_tag("Submit") %>
+<% end %>
+
+<% if defined?(@forecast_result) %>
+  <ul>
+    <li>Temperature: <%= @forecast_result.current_temperature %> ℃</li>
+    <li>Temperature Min: <%= @forecast_result.low %> ℃</li>
+    <li>Temperature Max: <%= @forecast_result.high %> ℃</li>
+    <li>Humidity: <%= @forecast_result.humidity %>%</li>
+    <li>Pressure: <%= @forecast_result.pressure %> millibars</li>
+    <li>Description: <%= @forecast_result.description %></li>
+    <li>Result from the cache?(update every 30min) <%= @forecast_result.from_cache %>
+    </ul>
+<% end %>
