@@ -21,6 +21,7 @@ class WeatherService
     
     OpenStruct.new.tap do |weather|
       weather.temperature = body["main"]["temp"]
+      weather.feels_like = body["main"]["feels_like"]
       weather.temperature_min = body["main"]["temp_min"]
       weather.temperature_max = body["main"]["temp_max"]
       weather.humidity = body["main"]["humidity"]

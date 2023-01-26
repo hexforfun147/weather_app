@@ -4,10 +4,11 @@ class ForecastService
   attr_reader :geocode_service, :weather_service
 
   class ForecastResult
-    attr_reader :current_temperature, :high, :low, :humidity, :pressure, :description, :from_cache
+    attr_reader :current_temperature, :feels_like, :high, :low, :humidity, :pressure, :description, :from_cache
 
-    def initialize(current_temperature:, high:, low:, humidity:, pressure:, description:, from_cache:)
+    def initialize(current_temperature:, feels_like:, high:, low:, humidity:, pressure:, description:, from_cache:)
       @current_temperature = current_temperature
+      @feels_like = feels_like
       @high = high
       @low = low
       @humidity = humidity
@@ -34,6 +35,7 @@ class ForecastService
     end
 
     ForecastResult.new( current_temperature: weather.temperature,
+                        feels_like: weather.feels_like,
                         high: weather.temperature_max,
                         low: weather.temperature_min,
                         humidity: weather.humidity,

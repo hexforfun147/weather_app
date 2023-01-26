@@ -1,19 +1,56 @@
-<h1>Forecast</h1>
 
-<%= form_with(method: 'get') do %>
-  <%= label :address, "Please provide your address?" %><br>
-  <%= text_field_tag(:address, @address, size: 90) %><br>
-  <%= submit_tag("Submit") %>
-<% end %>
+<div class="bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 sm:p-6">
+    <h3 class="text-lg font-medium leading-6 text-gray-900">Weather Forecast</h3>
+    <div class="mt-2 max-w-xl text-sm text-gray-500">
+      <p>Please provide the address.</p>
+    </div>
 
-<% if defined?(@forecast_result) %>
-  <ul>
-    <li>Temperature: <%= @forecast_result.current_temperature %> ℃</li>
-    <li>Temperature Min: <%= @forecast_result.low %> ℃</li>
-    <li>Temperature Max: <%= @forecast_result.high %> ℃</li>
-    <li>Humidity: <%= @forecast_result.humidity %>%</li>
-    <li>Pressure: <%= @forecast_result.pressure %> millibars</li>
-    <li>Description: <%= @forecast_result.description %></li>
-    <li>Result from the cache?(update every 30min) <%= @forecast_result.from_cache %>
-    </ul>
-<% end %>
+    <%= form_with(method: 'get', class: "mt-5 sm:flex sm:items-center") do %>
+      <div class="w-full sm:max-w-xs">
+        <label for="address" class="sr-only">Address</label>
+        <%= text_field_tag(:address, @address, size: 90, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm") %>
+      </div>
+      <br>
+      <%= submit_tag("Submit", class: "mt-3 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm") %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <h3 class="text-lg font-medium leading-6 text-gray-900">Address: <%= @address %></h3>
+  <dl class="mt-5 grid grid-cols-4 gap-5">
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Temperature</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.current_temperature %> ℃</dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Feels like</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.feels_like %> ℃</dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Temperature Min</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.low %> ℃</dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Temperature Max</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.high %> ℃</dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Humidity</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.humidity %>%</dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Pressure</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.pressure %> millibars</dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Description</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.pressure %> <%= @forecast_result.description %></dd>
+    </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Cached Result?</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"><%= @forecast_result.from_cache %></dd>
+    </div>
+  </dl>
+</div>
