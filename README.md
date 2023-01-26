@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Weather Forecast App
 
-Things you may want to cover:
+The app is currently deployed on Render at
+https://weather-forecast-bthq.onrender.com/
 
-* Ruby version
+#### Run app from local
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. bundle install
+2. rails server
