@@ -11,12 +11,13 @@ class WeatherService
     
   def call(latitude, longitude)
     response = conn.get('/data/2.5/weather', {
-      appid: Rails.application.credentials.openweather_api_key,
+      appid: openweather_api_key,
       lat: latitude,
       lon: longitude,
       units: "metric",
     })
-    body = response.body 
+
+    body = response.body
     
     OpenStruct.new.tap do |weather|
       weather.temperature = body["main"]["temp"]
@@ -27,5 +28,10 @@ class WeatherService
       weather.description = body["weather"][0]["description"]  
     end
   end
-    
+
+  private
+
+    def openweather_api_key
+      Rails.application.credentials.openweather_api_key || ENV["OPENWEATHER_API_KEY"]
+    end
 end
